@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Task from './components/Task';
 
 export default function App() {
   return (
@@ -7,7 +8,10 @@ export default function App() {
       <View style={styles.tasksWrapper}>
         <Text style={styles.sectionTitle}>Today's tasks</Text>
 
-        <View style={styles.items}>{/* Todo item here */}</View>
+        <View style={styles.items}>
+          <Task item='Learn maths' />
+          <Task item='Shop groceries' />
+        </View>
       </View>
     </View>
   );
@@ -25,6 +29,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 24,
     fontWeight: 'bold',
+    marginBottom: 30,
   },
   items: {},
 });
