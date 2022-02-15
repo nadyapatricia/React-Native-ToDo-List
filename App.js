@@ -29,7 +29,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <View style={styles.tasksWrapper}>
-        <Text style={styles.sectionTitle}>Today's tasks </Text>
+        <Text style={styles.sectionTitle}>Today's tasks 📝</Text>
 
         <ScrollView style={styles.scrollContainer}>
           {taskItems.map((item, idx) => {
@@ -47,7 +47,7 @@ export default function App() {
         >
           <TextInput
             style={styles.input}
-            placeholder='Write a task'
+            placeholder='Create a task'
             value={newTask}
             onChangeText={(text) => setNewTask(text)}
           />
