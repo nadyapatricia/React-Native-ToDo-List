@@ -3,12 +3,12 @@ import {
   StyleSheet,
   Text,
   View,
+  ScrollView,
   KeyboardAvoidingView,
   Platform,
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import { Keyboard } from 'react-native-web';
 import Task from './components/Task';
 
 export default function App() {
@@ -16,21 +16,30 @@ export default function App() {
   const [taskItems, setTaskItems] = useState([]);
 
   const handleAddTask = () => {
-    Keyboard.dismiss();
     setTaskItems([...taskItems, newTask]);
     setNewTask(null);
+  };
+
+  const completeTask = (index) => {
+    let copiedTaskItems = [...taskItems];
+    copiedTaskItems.splice(index, 1);
+    setTaskItems(copiedTaskItems);
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.tasksWrapper}>
-        <Text style={styles.sectionTitle}>Today's tasks</Text>
+        <Text style={styles.sectionTitle}>Today's tasks </Text>
 
-        <View>
-          {taskItems.map((item, idx) => (
-            <Task key={idx} item={item} />
-          ))}
-        </View>
+        <ScrollView style={styles.scrollContainer}>
+          {taskItems.map((item, idx) => {
+            return (
+              <TouchableOpacity key={idx} onPress={() => completeTask(idx)}>
+                <Task item={item} />
+              </TouchableOpacity>
+            );
+          })}
+        </ScrollView>
 
         <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -96,5 +105,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderColor: '#C0C0C0',
     borderWidth: 1,
+  },
+  scrollContainer: {
+    marginBottom: 150,
   },
 });
