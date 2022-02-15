@@ -1,8 +1,8 @@
-### React Native Expo - ToDo List App
+## React Native Expo - ToDo List App
 
 React Native project bootstrapped with Expo
 
-## App Showcae
+### App Showcae
 
 https://imgur.com/a/JqpuEGy
 
