@@ -124,8 +124,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingBottom: 20,
-    paddingHorizontal: 20,
+    bottom: 30,
   },
   emptyTaskTitle: {
     fontSize: 18,
