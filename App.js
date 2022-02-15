@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -8,25 +8,41 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
+import { Keyboard } from 'react-native-web';
 import Task from './components/Task';
 
 export default function App() {
+  const [newTask, setNewTask] = useState();
+  const [taskItems, setTaskItems] = useState([]);
+
+  const handleAddTask = () => {
+    Keyboard.dismiss();
+    setTaskItems([...taskItems, newTask]);
+    setNewTask(null);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.tasksWrapper}>
         <Text style={styles.sectionTitle}>Today's tasks</Text>
 
         <View>
-          <Task item='Learn maths' />
-          <Task item='Shop groceries' />
+          {taskItems.map((item, idx) => (
+            <Task key={idx} item={item} />
+          ))}
         </View>
 
         <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           style={styles.writeTaskWrapper}
         >
-          <TextInput style={styles.input} placeholder='Write a task' />
-          <TouchableOpacity>
+          <TextInput
+            style={styles.input}
+            placeholder='Write a task'
+            value={newTask}
+            onChangeText={(text) => setNewTask(text)}
+          />
+          <TouchableOpacity onPress={() => handleAddTask()}>
             <View style={styles.addWrapper}>
               <Text>+</Text>
             </View>
