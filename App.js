@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 20,
+    paddingBottom: 20,
     paddingHorizontal: 20,
   },
   emptyTaskTitle: {
