@@ -44,7 +44,7 @@ export default function App() {
           </ScrollView>
         ) : (
           <View style={styles.emptyStateContainer}>
-            <CreateTask width={300} height={300} />
+            <CreateTask width={200} height={200} />
             <Text style={[styles.emptyTaskTitle, styles.grayTextColor]}>
               No Task Found!
             </Text>
@@ -124,7 +124,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    bottom: 80,
+    paddingVertical: 20,
+    paddingHorizontal: 20,
   },
   emptyTaskTitle: {
     fontSize: 18,
