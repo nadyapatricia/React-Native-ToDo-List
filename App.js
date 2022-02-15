@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Task from './components/Task';
+import CreateTask from './assets/create-task';
 
 export default function App() {
   const [newTask, setNewTask] = useState();
@@ -31,15 +32,25 @@ export default function App() {
       <View style={styles.tasksWrapper}>
         <Text style={styles.sectionTitle}>Today's tasks 📝</Text>
 
-        <ScrollView style={styles.scrollContainer}>
-          {taskItems.map((item, idx) => {
-            return (
-              <TouchableOpacity key={idx} onPress={() => completeTask(idx)}>
-                <Task item={item} />
-              </TouchableOpacity>
-            );
-          })}
-        </ScrollView>
+        {taskItems.length > 0 ? (
+          <ScrollView style={styles.scrollContainer}>
+            {taskItems.map((item, idx) => {
+              return (
+                <TouchableOpacity key={idx} onPress={() => completeTask(idx)}>
+                  <Task item={item} />
+                </TouchableOpacity>
+              );
+            })}
+          </ScrollView>
+        ) : (
+          <View style={styles.emptyStateContainer}>
+            <CreateTask width={300} height={300} />
+            <Text style={[styles.emptyTaskTitle, styles.grayTextColor]}>
+              No Task Found!
+            </Text>
+            <Text style={styles.grayTextColor}>Try creating a new task</Text>
+          </View>
+        )}
 
         <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -75,7 +86,6 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 30,
   },
   writeTaskWrapper: {
     position: 'absolute',
@@ -107,6 +117,20 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   scrollContainer: {
+    marginTop: 30,
     marginBottom: 150,
+  },
+  emptyStateContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    bottom: 80,
+  },
+  emptyTaskTitle: {
+    fontSize: 18,
+    marginBottom: 5,
+  },
+  grayTextColor: {
+    color: '#706e6e',
   },
 });
