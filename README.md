@@ -2,7 +2,7 @@
 
 React Native project bootstrapped with Expo
 
-### App Showcae
+### App Showcase
 
 https://imgur.com/a/JqpuEGy
 
